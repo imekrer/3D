@@ -1,0 +1,33 @@
+from direct.showbase.ShowBase import ShowBase
+from mapmanager import Mapmanager
+
+mapmanagerr.py
+
+class Mapmanager():
+	def __init__(self):
+		self.model = 'block.egg'
+		self.texture = 'block.egg'
+		self.color = (0.2, 0.2, 0.35, 1)
+	def addBlock(self, position):
+		self.block = loader.loadModel(self.model)
+		self.block.setTexture(loader.loadTexture(self.texture))
+		self.block.setPos(position)
+		self.block.setColor(self.color)
+		self.block.reparentTo(self.land)
+	def startNew(self):
+		self.land= render.attachNewNode('Land')
+
+
+
+
+class Game(ShowBase):
+    def __init__(self):
+        ShowBase.__init__(self)
+    	self.land = Mapmanager()
+	base.camLens.setFov(90)
+	self.land.startNew()
+	self.land.addBlock((0, 0 ,0))
+	
+	
+game = Game()
+game.run()
